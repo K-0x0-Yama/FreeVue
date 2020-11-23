@@ -16,6 +16,7 @@
 <div id="app">
     <p>{{message}}</p>
     <button v-on:click="reverseMessage">メッセージ反転</button>
+    <p>---------------------------------------------------------</p>
 </div>
 <script>
     new Vue({
@@ -36,6 +37,8 @@
     <!--v-once-->
     <p v-once>{{ message1 }}</p>
     <p>{{ hiragana() }}</p>
+    <p>---------------------------------------------------------</p>
+
 </div>
 <script>
     new Vue({
@@ -50,11 +53,12 @@
         }
     })
 </script>
-<!---------------------------------------------------->
+<!------------------------------------------------------------------>
 <div id="v-html">
     <!--v-html-->
     <div>{{ html }}</div>
     <div v-html="html"></div>
+    <p>---------------------------------------------------------</p>
 
 </div>
 <script>
@@ -65,23 +69,75 @@
         }
     })
 </script>
-<!----------------------------------------------------->
+<!------------------------------------------------------------------>
 <div id="v-bind">
-    <!--v-bind-->
+    <!--v-bind　基本-->
     <a v-bind:href=url>Google</a>
+    <p>---------------------------------------------------------</p>
+
+    <!--v-bind　応用1/注意点はキーに大文字を含めないこと。
+    ブラウザの仕様で小文字変換するためエラ-になる-->
+    <a :[douurl]="url">応用Google</a>
+    <p>---------------------------------------------------------</p>
+
+    <!--v-bind　応用2-->
+    <a v-bind="{href: url, id: number}">応用2Google</a>
+    <p>---------------------------------------------------------</p>
+
 </div>
 <script>
     new Vue({
         el: '#v-bind',
         data: {
             message1: '',
-            url: 'https://google.com'
+            url: 'https://google.com',
+            douurl: 'href',
+            number: 31
 
         },
 
         methods: {
             hiragana: function () {
                 this.message1 = 'はろ'
+            }
+        }
+    })
+</script>
+<!------------------------------------------------------------------>
+<div id="v-on">
+    <!--v-on-->
+    <p>現在{{ number }}回クリックされています</p>
+    <button v-on:click="countUp">カウントアップ</button>
+    <p>---------------------------------------------------------</p>
+
+    <!--v-on応用-->
+    <p v-on:mousemove="changeMousePosition">マウスを載せてください</p>
+    <p>X:{{x}}, Y:{{y}}</p>
+    <p>---------------------------------------------------------</p>
+
+    <!--v-on引数の考え方-->
+    <p>引数の考え型カウント{{ num }}</p>
+    <button v-on:click="countUpHiki(2)">引数ボタン</button>
+</div>
+<script>
+    new Vue({
+        el: '#v-on',
+        data: {
+            number: 0,
+            num: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            countUp: function () {
+                this.number += 1
+            },
+            changeMousePosition: function (event) {
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            countUpHiki: function (times) {
+                this.num += 1 * times
             }
         }
     })
