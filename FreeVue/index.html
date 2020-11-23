@@ -7,25 +7,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-
 <body>
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js">
+</script>
 
+<!-------------------------------------------------------->
 <div id="app">
     <p>{{message}}</p>
+    <button v-on:click="reverseMessage">メッセージ反転</button>
 </div>
 <script>
     new Vue({
-    el: '#app',
-    data: {
-        message: 'HelloWorld'
-    }
-})
-
-
+        el: '#app',
+        data: {
+            message: 'HelloWorld'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message =
+                    this.message.split('').reverse().join('')
+            }
+        }
+    })
 </script>
+<!----------------------------------------------------->
+<div id="v-once">
+    <!--v-once-->
+    <p v-once>{{ message1 }}</p>
+    <p>{{ hiragana() }}</p>
+</div>
+<script>
+    new Vue({
+        el: '#v-once',
+        data: {
+              message1: 'helloworld'
+        },
+        methods: {
+            hiragana: function(){
+                this.message1 = 'はろ'
+            }
+        }
+    })
+</script>
+<!---------------------------------------------------->
+
+
+
 
 </body>
+
 
 </html>
 
