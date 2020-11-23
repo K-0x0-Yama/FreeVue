@@ -15,33 +15,12 @@
 <script
         src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js">
 </script>
-
-<!-------------------------------------------------------->
-<div id="app">
-    <p>{{message}}</p>
-    <button v-on:click="reverseMessage">メッセージ反転</button>
-    <p>---------------------------------------------------------</p>
-</div>
-<script>
-    new Vue({
-        el: '#app',
-        data: {
-            message: 'HelloWorld'
-        },
-        methods: {
-            reverseMessage: function () {
-                this.message =
-                    this.message.split('').reverse().join('')
-            }
-        }
-    })
-</script>
 <!----------------------------------------------------->
 <div id="v-once">
+    <div><h1>v-once</h1></div>
     <!--v-once-->
     <p v-once>{{ message1 }}</p>
     <p>{{ hiragana() }}</p>
-    <p>---------------------------------------------------------</p>
 
 </div>
 <script>
@@ -59,10 +38,10 @@
 </script>
 <!------------------------------------------------------------------>
 <div id="v-html">
+    <div><h1>v-html</h1></div>
     <!--v-html-->
     <div>{{ html }}</div>
     <div v-html="html"></div>
-    <p>---------------------------------------------------------</p>
 
 </div>
 <script>
@@ -78,16 +57,13 @@
     <div><h1>v-bind</h1></div>
     <!--v-bind　基本-->
     <a v-bind:href=url>Google</a>
-    <p>---------------------------------------------------------</p>
 
     <!--v-bind　応用1/注意点はキーに大文字を含めないこと。
     ブラウザの仕様で小文字変換するためエラ-になる-->
     <a :[douurl]="url">応用Google</a>
-    <p>---------------------------------------------------------</p>
 
     <!--v-bind　応用2-->
     <a v-bind="{href: url, id: number}">応用2Google</a>
-    <p>---------------------------------------------------------</p>
 
 </div>
 <script>
@@ -111,46 +87,51 @@
 <!------------------------------------------------------------------>
 <div id="v-on">
     <div><h1>v-on</h1></div>
+    <!--Introduction-->
+    <p>{{message}}</p>
+    <button v-on:click="reverseMessage">メッセージ反転</button>
+
     <!--v-on-->
     <p>現在{{ number }}回クリックされています</p>
     <button v-on:click="countUp">カウントアップ</button>
-    <p>---------------------------------------------------------</p>
 
     <!--v-on応用-->
     <p v-on:mousemove="changeMousePosition">マウスを載せてください</p>
     <p>X:{{x}}, Y:{{y}}</p>
-    <p>---------------------------------------------------------</p>
 
     <!--v-on引数の考え方-->
     <p>引数の考え型カウント{{ num }}</p>
     <button v-on:click="countUpHiki(2)">引数ボタン</button>
-    <p>---------------------------------------------------------</p>
 
     <!--v-onのstop-->
     <p v-on:mousemove="changeMousePosition">マウスを載せてください
         <span v-on:mousemove.stop="">反応しないでください</span></p>
     <p>X:{{x}}, Y:{{y}}</p>
-    <p>---------------------------------------------------------</p>
 
     <!--v-onのprevent-->
     <a v-on:click="noEvent" href="https://google.com">反応しないgoogleだよ</a>
-    <p>---------------------------------------------------------</p>
+
     <!--v-onのキー修飾子-->
     <input type="text" v-on:keyup="myAlert">
     <input type="text" v-on:keyup.enter="myAlert">
     <input type="text" v-on:keyup.enter.space="myAlert">
-    <p>---------------------------------------------------------</p>
+
 </div>
 <script>
     new Vue({
         el: '#v-on',
         data: {
+            message: 'HelloWorld',
             number: 0,
             num: 0,
             x: 0,
             y: 0
         },
         methods: {
+            reverseMessage: function () {
+                this.message =
+                    this.message.split('').reverse().join('')
+            },
             countUp: function () {
                 this.number += 1
             },
@@ -170,7 +151,6 @@
         }
     })
 </script>
-
 
 </body>
 
