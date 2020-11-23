@@ -41,18 +41,51 @@
     new Vue({
         el: '#v-once',
         data: {
-              message1: 'helloworld'
+            message1: '一度だけの描画'
         },
         methods: {
-            hiragana: function(){
+            hiragana: function () {
                 this.message1 = 'はろ'
             }
         }
     })
 </script>
 <!---------------------------------------------------->
+<div id="v-html">
+    <!--v-html-->
+    <div>{{ html }}</div>
+    <div v-html="html"></div>
 
+</div>
+<script>
+    new Vue({
+        el: '#v-html',
+        data: {
+            html: '<h1>v-htmlで出力してみたよ</h1>'
+        }
+    })
+</script>
+<!----------------------------------------------------->
+<div id="v-bind">
+    <!--v-bind-->
+    <a v-bind:href=url>Google</a>
+</div>
+<script>
+    new Vue({
+        el: '#v-bind',
+        data: {
+            message1: '',
+            url: 'https://google.com'
 
+        },
+
+        methods: {
+            hiragana: function () {
+                this.message1 = 'はろ'
+            }
+        }
+    })
+</script>
 
 
 </body>
