@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width,
+                   user-scalable=no,
+                   initial-scale=1.0,
+                   maximum-scale=1.0,
+                   minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
@@ -65,12 +69,13 @@
     new Vue({
         el: '#v-html',
         data: {
-            html: '<h1>v-htmlで出力してみたよ</h1>'
+            html: '<h3>v-htmlで出力してみた</h3>'
         }
     })
 </script>
 <!------------------------------------------------------------------>
 <div id="v-bind">
+    <div><h1>v-bind</h1></div>
     <!--v-bind　基本-->
     <a v-bind:href=url>Google</a>
     <p>---------------------------------------------------------</p>
@@ -105,6 +110,7 @@
 </script>
 <!------------------------------------------------------------------>
 <div id="v-on">
+    <div><h1>v-on</h1></div>
     <!--v-on-->
     <p>現在{{ number }}回クリックされています</p>
     <button v-on:click="countUp">カウントアップ</button>
@@ -118,6 +124,22 @@
     <!--v-on引数の考え方-->
     <p>引数の考え型カウント{{ num }}</p>
     <button v-on:click="countUpHiki(2)">引数ボタン</button>
+    <p>---------------------------------------------------------</p>
+
+    <!--v-onのstop-->
+    <p v-on:mousemove="changeMousePosition">マウスを載せてください
+        <span v-on:mousemove.stop="">反応しないでください</span></p>
+    <p>X:{{x}}, Y:{{y}}</p>
+    <p>---------------------------------------------------------</p>
+
+    <!--v-onのprevent-->
+    <a v-on:click="noEvent" href="https://google.com">反応しないgoogleだよ</a>
+    <p>---------------------------------------------------------</p>
+    <!--v-onのキー修飾子-->
+    <input type="text" v-on:keyup="myAlert">
+    <input type="text" v-on:keyup.enter="myAlert">
+    <input type="text" v-on:keyup.enter.space="myAlert">
+    <p>---------------------------------------------------------</p>
 </div>
 <script>
     new Vue({
@@ -138,6 +160,12 @@
             },
             countUpHiki: function (times) {
                 this.num += 1 * times
+            },
+            noEvent: function (event) {
+                event.preventDefault();
+            },
+            myAlert() {
+                alert('アラート');
             }
         }
     })
