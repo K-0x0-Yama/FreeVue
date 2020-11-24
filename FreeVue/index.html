@@ -10,6 +10,7 @@
                    minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
 </head>
 <body>
 <script
@@ -116,11 +117,19 @@
     <input type="text" v-on:keyup.enter="myAlert">
     <input type="text" v-on:keyup.enter.space="myAlert">
 
+    <!--[]を使って引数,domイベントclickやmousemoveとか動的に表現-->
+    <p>現在 {{number}}回クリックされています</p>
+    <button v-on:[event]="countUp">カウントアップ</button>
+    <!--v-onの省略記法-->
+    <p>現在 {{number}}回クリックされています</p>
+    <button @event="countUp">カウントアップ</button>
+
 </div>
 <script>
     new Vue({
         el: '#v-on',
         data: {
+            event: 'click',
             message: 'HelloWorld',
             number: 0,
             num: 0,
@@ -148,9 +157,49 @@
             myAlert() {
                 alert('アラート');
             }
+
         }
     })
 </script>
+<!------------------------------------------------------------------>
+<div id="v-model">
+    <div><h1>v-model</h1></div>
+    <!--v-html-->
+    <input type="text" v-model="message">
+    <h3>{{message}}</h3>
+
+</div>
+<script>
+    new Vue({
+        el: '#v-model',
+        data: {
+            message: "初期値です！なにか入力してください"
+        }
+    })
+</script>
+<!------------------------------------------------------------------>
+<div id="computed">
+    <div><h1>computedで動的表現</h1></div>
+    <!--computed-->
+    <p>{{ counter }}</p>
+    <button @click="counter += 1">+1</button>
+    <p>{{ lessThanThree }}</p>
+
+</div>
+<script>
+    new Vue({
+        el: '#computed',
+        data: {
+            counter: 0
+        },
+        computed: {
+            lessThanThree: function () {
+                return this.counter > 3 ? '3より上' : '３以下'
+            }
+        }
+    })
+</script>
+
 
 </body>
 
