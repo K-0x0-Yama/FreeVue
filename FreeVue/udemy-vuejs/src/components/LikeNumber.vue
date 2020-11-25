@@ -1,26 +1,24 @@
 <template>
   <div>
-    <p>いいね({{ number }})</p>
+    <p>ライクナンバーいいね({{ totalNumber }})</p>
     <button @click="increment">+1</button>
   </div>
 </template>
 
 <script>
 export default {
-  data: function () {
-    return {
-      number: 3
-    };
-  },
+  props: ["totalNumber"],
   methods: {
     increment: function () {
       this.number += 1;
     }
   }
 };
-
 </script>
 
-<style>
 
+<style scoped>
+div {
+  border: 1px solid blue;
+}
 </style>
